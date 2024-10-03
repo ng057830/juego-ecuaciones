@@ -1,16 +1,14 @@
 // Crear la instancia de MathGames API
 var mathGame = MathGames.getInstance({
-    // Puedes agregar tu API key si tienes una, sino omite esta propiedad
     wrapper: document.getElementById('math-game-wrapper'),
     debug: true
 });
 
-// Seleccionar habilidad (es necesaria una pool_key)
+// Seleccionar una habilidad
 mathGame.selectSkill({ pool_key: 'COMPLETE' });
 
-// Evento cuando se selecciona una habilidad
+// Evento cuando la habilidad está seleccionada
 mathGame.on('SKILL_SELECTED', function () {
-    // Iniciar la sesión
     mathGame.startSession();
 });
 
@@ -19,4 +17,13 @@ mathGame.on('SESSION_READY', function () {
     // Obtener una pregunta
     var question = mathGame.getQuestion();
     document.getElementById('math-game-wrapper').innerHTML = '<p>' + question.display + '</p>';
+});
+
+// Manejar la respuesta seleccionada
+mathGame.on('QUESTION_ANSWERED', function (result) {
+    if (result.correct) {
+        alert("¡Correcto!");
+    } else {
+        alert("Incorrecto. Intenta nuevamente.");
+    }
 });
