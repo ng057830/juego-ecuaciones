@@ -1,20 +1,157 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Juego de Resolución de Ecuaciones</title>
-    <!-- Incluir la API de MathGames -->
-    <script src="https://cdn.mathgames.com/api/dist/latest/mathgames-api.js"></script>
-    <link rel="stylesheet" href="https://cdn.mathgames.com/api/dist/latest/mathgames-api.css">
-</head>
-<body>
-    <h1>Juego de Resolución de Ecuaciones</h1>
-    <div id="math-game-wrapper" style="border: 1px solid #ccc; padding: 20px;">
-        Cargando pregunta...
-    </div>
+  <head>
+      <title>MathGames JS API Example - CDN</title>
+      <link rel="stylesheet" type="text/css" href="./example.css">
+      <link rel="stylesheet" type="text/css" href="https://cdn.mathgames.com/api/dist/latest/mathgames-api.css">
+  </head>
+  <body>
+      <h1>Juego de Resolución de Ecuaciones</h1>
+      <div id="mathgames-api-wrapper" class="api-wrapper">
+          <canvas id="game-canvas"></canvas>
+          <div id="btn-pause" class="btn-pause">Pause</div>
+          <div id="pause-dialog" class="pause-dialog">
+            <div id="btn-show-progress" class="btn">Ver Progreso</div>
+            <div id="btn-change-skill" class="btn">Cambiar Habilidad</div>
+            <div id="btn-available-standards" class="btn">Ver Estándares Disponibles</div>
+            <div id="btn-end-game" class="btn">Terminar Juego</div>
+            <div id="btn-close-pause" class="btn">Cerrar</div>
+          </div>
+      </div>
+  </body>
 
-    <!-- Script principal para manejar el juego -->
-    <script src="juego.js"></script>
-</body>
+  <script src="https://cdn.mathgames.com/api/dist/latest/mathgames-api.js"></script>
+  <script>
+      var wrapper =  document.getElementById('mathgames-api-wrapper');
+      var gameCanvas = document.getElementById('game-canvas');
+      var gameContext = gameCanvas.getContext('2d');
+
+      document.addEventListener('DOMContentLoaded', function() {
+
+          var api = MathGamesAPI.getInstance({
+              wrapper: wrapper,
+              api_key: '528e1abeb4967cb32b00028e', // Cambia esta API Key si tienes una propia
+              debug: true
+          });
+
+          var game = {
+              currentQuestion: null,
+              isResizing: false,
+
+              init: function() {
+                  this.setCanvasSize();
+              },
+
+              start: function() {
+                  api.selectSkill({pool_key: 'COMPLETE'});
+              },
+
+              resize: function() {
+                  var self = this;
+
+                  if (this.isResizing !== false) {
+                      clearTimeout(this.isResizing);
+                  }
+
+                  this.isResizing = setTimeout(function() {
+                      self.setCanvasSize();
+                      if(self.currentQuestion) {
+                          self.renderQuestion();
+                      }
+                  }, 400);
+              },
+
+              setCanvasSize: function() {
+                  gameCanvas.height = wrapper.offsetHeight;
+                  gameCanvas.width = wrapper.offsetWidth;
+              },
+
+              renderQuestion: function() {
+                  gameContext.clearRect(0, 0, gameCanvas.width, gameCanvas.height);
+                  this.renderQuestionDisplay();
+                  this.renderQuestionChoices();
+              },
+
+              renderQuestionDisplay: function() {
+                  var self = this;
+                  var displayImage = new Image();
+                  var displayWidth = gameCanvas.width * 0.80;
+                  var displayHeight = gameCanvas.height * 0.18;
+                  displayImage.src = this.currentQuestion.display;
+                  displayImage.onload = function() {
+                      var widthScale = Math.min(displayImage.width, displayWidth) / displayImage.width;
+                      var heightScale = displayHeight / displayImage.height;
+                      var scale = Math.min(widthScale, heightScale);
+                      var w = scale * displayImage.width;
+                      var h = scale * displayImage.height;
+                      var x = (gameCanvas.width - w) / 2;
+                      var y = (gameCanvas.height * 0.80) + ((gameCanvas.height * 0.20 - h)/2);
+                      gameContext.fillStyle = '#efefef';
+                      gameContext.fillRect(0, gameCanvas.height * 0.75, gameCanvas.width, gameCanvas.height * 0.25);
+                      gameContext.drawImage(displayImage, x, y, w, h);
+                  };
+              },
+
+              renderQuestionChoices: function() {
+                  for (var i = 0; i < this.currentQuestion.choices.length; i++) {
+                      this.renderChoice(i, false);
+                  }
+              },
+
+              renderChoice: function(index, active) {
+                  var choiceImage = new Image();
+                  var choiceContainers = this.getChoiceBounds();
+                  var choiceColours = [
+                      '#FF0000',
+                      '#0033cc',
+                      '#009933',
+                      '#ff9900'
+                  ];
+
+                  choiceImage.src = this.currentQuestion.choices[index];
+                  choiceImage.onload = function() {
+                      var container = choiceContainers[index];
+                      var optWidth = Math.min(choiceImage.width, container.w);
+                      var optHeight = (optWidth / choiceImage.width) * choiceImage.height;
+                      var choiceBounds = {
+                          x: container.x + ((container.w/2) - (optWidth/2)),
+                          y: container.y + ((container.h/2) - (optHeight/2)),
+                          w: optWidth,
+                          h: optHeight
+                      };
+                      gameContext.clearRect(container.x, container.y, container.w, container.h);
+                      if(active === true) {
+                          gameContext.fillStyle = choiceColours[index];
+                          gameContext.fillRect(container.x, container.y, container.w, container.h);
+                      } else {
+                          gameContext.strokeStyle = choiceColours[index];
+                          gameContext.strokeRect(container.x, container.y, container.w, container.h);
+                      }
+                      gameContext.drawImage(choiceImage, choiceBounds.x, choiceBounds.y, choiceBounds.w, choiceBounds.h);
+                  };
+              },
+
+              getNextQuestion: function() {
+                  this.currentQuestion = api.getQuestion({
+                      colors: {
+                          question: [12, 33, 169, 1], 
+                          choices: [
+                              [169, 12, 12, 1], 
+                              [11, 21, 161, 1], 
+                              [23, 172, 63, 1], 
+                              [216, 144, 0, 1] 
+                          ]
+                      }
+                  });
+
+                  this.renderQuestion(this.currentQuestion);
+              }
+          };
+
+          game.init();
+          game.start();
+
+      });
+  </script>
+
 </html>
