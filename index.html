@@ -4,63 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Juego de Resolución de Ecuaciones</title>
+    <!-- Incluir la API de MathGames -->
     <script src="https://cdn.mathgames.com/api/dist/latest/mathgames-api.js"></script>
-    <style>
-        body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; }
-        #game-container { display: inline-block; border: 2px solid #333; padding: 20px; background-color: #f7f7f7; }
-        #question { margin: 20px 0; font-size: 24px; }
-        .choice { padding: 10px 20px; background-color: #007bff; color: white; border: none; margin: 5px; cursor: pointer; }
-        .choice:hover { background-color: #0056b3; }
-    </style>
+    <link rel="stylesheet" href="https://cdn.mathgames.com/api/dist/latest/mathgames-api.css">
 </head>
 <body>
     <h1>Juego de Resolución de Ecuaciones</h1>
-    <div id="game-container">
-        <div id="question">Cargando pregunta...</div>
-        <div id="choices"></div>
+    <div id="math-game-wrapper" style="border: 1px solid #ccc; padding: 20px;">
+        Cargando pregunta...
     </div>
 
-    <script>
-        // Configuración inicial de MathGames API
-        const wrapper = document.getElementById('game-container');
-        const api = MathGames.getInstance({
-            api_key: '',  // Puedes dejarlo vacío si no se requiere
-            wrapper: wrapper,
-            debug: true
-        });
-
-        // Iniciar sesión y comenzar el juego
-        api.startSession();
-
-        // Obtener una pregunta
-        api.getQuestion({
-            colors: {
-                question: [12, 33, 169, 1],  // azul para la pregunta
-                choices: [
-                    [169, 12, 12, 1],  // rojo
-                    [11, 21, 161, 1],  // azul
-                    [23, 172, 63, 1],  // verde
-                    [216, 144, 0, 1]  // naranja
-                ]
-            }
-        }).then((question) => {
-            const questionDiv = document.getElementById('question');
-            const choicesDiv = document.getElementById('choices');
-            // Mostrar la pregunta
-            questionDiv.innerHTML = `<img src="${question.display}" alt="Pregunta">`;
-
-            // Mostrar las opciones
-            question.choices.forEach((choice, index) => {
-                const btn = document.createElement('button');
-                btn.classList.add('choice');
-                btn.innerHTML = `<img src="${choice}" alt="Opción ${index + 1}">`;
-                btn.onclick = () => {
-                    api.answerQuestion(index);  // Responder a la pregunta
-                    alert('Respuesta enviada');  // Mensaje de feedback
-                };
-                choicesDiv.appendChild(btn);
-            });
-        });
-    </script>
+    <!-- Script principal para manejar el juego -->
+    <script src="juego.js"></script>
 </body>
 </html>
