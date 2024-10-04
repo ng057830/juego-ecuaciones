@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Juego de Matemáticas: Multiplicación y División de Monomios</title>
+    <title>Juego de Matemáticas: Problemas Algebraicos</title>
     
     <!-- Vincular los estilos -->
     <link rel="stylesheet" href="styles.css">
@@ -13,72 +13,36 @@
 </head>
 <body>
     <div class="container">
-        <h1>Multiplicación y División de Monomios</h1>
-        <p>Sigue los pasos para resolver cada ejercicio paso a paso</p>
+        <h1>Juego: Multiplicación y División de Monomios</h1>
+        <p>Resuelve paso a paso los siguientes ejercicios. Debes completar un ejercicio correctamente antes de avanzar al siguiente.</p>
 
-        <!-- Sección de multiplicación -->
-        <div id="multiplicationStep1">
-            <h2>Ejercicio de Multiplicación</h2>
+        <div id="exercise1" class="exercise">
+            <h2>Ejercicio 1</h2>
             <p>Multiplica los siguientes monomios: 
             \( 3x^2 \cdot 4x^3 \)</p>
             <p>Paso 1: ¿Cuál es el coeficiente resultante? \( 3 \times 4 \)</p>
-            <input type="number" id="inputMultiplication1" placeholder="Ingresa tu respuesta">
-            <button onclick="checkMultiplicationStep1()">Comprobar</button>
-            <p id="feedbackMultiplication1"></p>
+            <input type="number" id="inputExercise1Step1" placeholder="Ingresa tu respuesta">
+            <button onclick="checkExercise1Step1()">Comprobar</button>
+            <p id="feedbackExercise1Step1"></p>
+
+            <p id="exercise1Step2" class="hidden">Paso 2: ¿Cuál es el exponente de \( x \) resultante? (Suma de \( 2 + 3 \))</p>
+            <input type="number" id="inputExercise1Step2" class="hidden" placeholder="Ingresa tu respuesta">
+            <button id="exercise1Step2Button" class="hidden" onclick="checkExercise1Step2()">Comprobar</button>
+            <p id="feedbackExercise1Step2"></p>
         </div>
 
-        <div id="multiplicationStep2" class="hidden">
-            <p>Paso 2: ¿Cuál es el exponente de \( x \) resultante? (Suma de \( 2 + 3 \))</p>
-            <input type="number" id="inputMultiplication2" placeholder="Ingresa tu respuesta">
-            <button onclick="checkMultiplicationStep2()">Comprobar</button>
-            <p id="feedbackMultiplication2"></p>
+        <!-- Sección para problemas siguientes -->
+        <div id="exercise2" class="exercise hidden">
+            <h2>Ejercicio 2</h2>
+            <p>Multiplica: \( (2x + 3)(x - 4) \)</p>
+            <!-- Añadir interacción similar al Ejercicio 1 -->
         </div>
 
-        <div id="finalMultiplicationStep" class="hidden">
-            <h3>¡Has completado la multiplicación!</h3>
-            <p>El resultado es \( 12x^5 \)</p>
-        </div>
+        <!-- ... Añadir más ejercicios ... -->
 
-        <!-- Sección de división -->
-        <div id="divisionStep1" class="hidden">
-            <h2>Ejercicio de División</h2>
-            <p>Divide los siguientes monomios: 
-            \[
-                \frac{12x^5}{4x^2}
-            \]</p>
-            <p>Paso 1: ¿Cuál es el coeficiente resultante? \( \frac{12}{4} \)</p>
-            <input type="number" id="inputDivision1" placeholder="Ingresa tu respuesta">
-            <button onclick="checkDivisionStep1()">Comprobar</button>
-            <p id="feedbackDivision1"></p>
-        </div>
-
-        <div id="divisionStep2" class="hidden">
-            <p>Paso 2: ¿Cuál es el exponente de \( x \) resultante? (Resta de \( 5 - 2 \))</p>
-            <input type="number" id="inputDivision2" placeholder="Ingresa tu respuesta">
-            <button onclick="checkDivisionStep2()">Comprobar</button>
-            <p id="feedbackDivision2"></p>
-        </div>
-
-        <div id="finalDivisionStep" class="hidden">
-            <h3>¡Has completado la división!</h3>
-            <p>El resultado es \( 3x^3 \)</p>
-        </div>
-
-        <!-- Evaluación final -->
-        <div id="finalTest" class="hidden">
-            <h2>Prueba final</h2>
-            <p>Ahora resuelve: 
-            \[
-                \frac{-24x^3y^2}{8xy}
-            \]</p>
-            <p>Paso 1: ¿Cuál es el coeficiente resultante?</p>
-            <input type="number" id="inputFinal1" placeholder="Ingresa tu respuesta">
-            <button onclick="checkFinalTest()">Comprobar</button>
-            <p id="feedbackFinal"></p>
-        </div>
+        <!-- Vincular archivo JavaScript -->
+        <script src="game.js"></script>
+        <script src="math-definitions.js"></script>
     </div>
-
-    <!-- Vincular el archivo de JavaScript -->
-    <script src="game.js"></script>
 </body>
 </html>
