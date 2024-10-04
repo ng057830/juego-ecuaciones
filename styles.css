@@ -32,3 +32,8 @@ button {
 button:hover {
     background-color: #45a049;
 }
+
+/* Clase para ocultar un contenedor */
+.hidden {
+    display: none;
+}
