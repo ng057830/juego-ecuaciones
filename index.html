@@ -5,9 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menú de Problemas</title>
     <link rel="stylesheet" href="styles.css">
-
-    <!-- MathJax desde GitHub -->
-    <script src="mathjax.js"></script>
+    
+    <!-- Cargar MathJax desde el CDN oficial -->
+    <script>
+        window.MathJax = {
+          tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]']],
+          },
+          svg: {
+            fontCache: 'global'
+          }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
 </head>
 <body>
     <div class="container" id="menu">
@@ -61,7 +72,7 @@
         <p id="finalResult"></p>
     </div>
 
-    <!-- Script principal -->
+    <!-- Script para la lógica del ejercicio 11 -->
     <script src="exercise11.js"></script>
 
     <!-- Script para mostrar el ejercicio -->
@@ -70,7 +81,7 @@
             // Ocultar el menú de problemas y mostrar el ejercicio 11
             document.getElementById('menu').classList.add('hidden');
             document.getElementById('exercise11').classList.remove('hidden');
-            MathJax.typeset();  // Renderizar las fórmulas de LaTeX
+            MathJax.typeset();  // Renderizar las fórmulas de LaTeX después de que se muestren
         });
     </script>
 </body>
