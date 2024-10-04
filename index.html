@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Juego Interactivo - Ejercicio 11</title>
+    <title>Juego Interactivo - Ejercicio 11 Mejorado</title>
     
     <!-- Estilos -->
     <link rel="stylesheet" href="styles.css">
@@ -14,37 +14,43 @@
 <body>
     <div class="container">
         <h1>Ejercicio 11: Multiplicar Monomios</h1>
-        <p>Multiplica los monomios: \\( 4x^2 \cdot -5x^3 \\)</p>
+        <p>Multiplica los monomios: \\( 4x^2 \cdot (-5x^3) \\)</p>
 
-        <!-- Paso 1: Signo del resultado -->
-        <p>Paso 1: Selecciona el signo del resultado:</p>
+        <!-- Paso 1: Identificar el signo -->
+        <p>Paso 1: Identifica el signo del resultado:</p>
         <select id="signSelect">
             <option value="pos">Positivo (+)</option>
             <option value="neg">Negativo (-)</option>
         </select>
         <p id="feedbackStep1"></p>
 
-        <!-- Paso 2: Variables involucradas -->
-        <p>Paso 2: ¿Qué variables están involucradas?</p>
+        <!-- Paso 2: ¿Cuáles son las variables involucradas? -->
+        <p>Paso 2: ¿Qué variables están involucradas en la multiplicación?</p>
         <label><input type="checkbox" id="varX"> \\( x \\)</label>
         <label><input type="checkbox" id="varY"> \\( y \\)</label>
-        <label><input type="checkbox" id="varZ"> \\( z \\)</label>
         <p id="feedbackStep2"></p>
 
-        <!-- Paso 3: Multiplicar los coeficientes -->
-        <p>Paso 3: Multiplica los coeficientes numéricos (4 y -5):</p>
-        <input type="text" id="coefInput" placeholder="Ingresa el resultado">
+        <!-- Paso 3: Multiplicar los coeficientes numéricos -->
+        <p>Paso 3: Multiplica los coeficientes numéricos \\( 4 \\) y \\( -5 \\):</p>
+        <input type="text" id="coefInput" placeholder="Ingresa el resultado numérico">
         <button onclick="checkStep3()">Comprobar</button>
         <p id="feedbackStep3"></p>
 
-        <!-- Paso 4: Multiplicar las variables -->
-        <p>Paso 4: Multiplica las variables \\(x^2 \\cdot x^3\\):</p>
-        <input type="text" id="expInput" placeholder="Ingresa el exponente de \\(x\\)">
+        <!-- Paso 4: ¿Qué exponentes tienen las variables? -->
+        <p>Paso 4: ¿Cuáles son los exponentes de las variables \\( x^2 \\) y \\( x^3 \\)?</p>
+        <p>Exponente de \\( x \\) en el primer monomio: <input type="text" id="exp1Input" placeholder="2"></p>
+        <p>Exponente de \\( x \\) en el segundo monomio: <input type="text" id="exp2Input" placeholder="3"></p>
         <button onclick="checkStep4()">Comprobar</button>
         <p id="feedbackStep4"></p>
 
+        <!-- Paso 5: Sumar los exponentes -->
+        <p>Paso 5: Suma los exponentes de \\( x \\):</p>
+        <input type="text" id="sumExpInput" placeholder="Ingresa la suma de los exponentes">
+        <button onclick="checkStep5()">Comprobar</button>
+        <p id="feedbackStep5"></p>
+
         <!-- Resultado final en LaTeX -->
-        <h2>Resultado:</h2>
+        <h2>Resultado Final:</h2>
         <p id="finalResult"></p>
     </div>
 
