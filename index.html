@@ -3,41 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Juego de Matemáticas: Menú de Problemas</title>
+    <title>Juego Interactivo - Ejercicio 11</title>
     
-    <!-- Vincular los estilos -->
+    <!-- Estilos -->
     <link rel="stylesheet" href="styles.css">
     
-    <!-- Cargar MathJax para renderizar LaTeX -->
+    <!-- MathJax para LaTeX -->
     <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    
-    <!-- Incluir math.js desde CDN -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/10.6.4/math.min.js"></script>
-
-    <!-- Incluir Algebrite.js desde un CDN -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/algebrite/1.4.0/algebrite.min.js"></script>
 </head>
 <body>
     <div class="container">
-        <h1>Menú de Problemas</h1>
-        <p>Selecciona un problema para resolverlo:</p>
+        <h1>Ejercicio 11: Multiplicar Monomios</h1>
+        <p>Multiplica los monomios: \\( 4x^2 \cdot -5x^3 \\)</p>
 
-        <!-- Menú de problemas -->
-        <div id="menu">
-            <button onclick="showProblem(1)">Problema 1</button>
-            <button onclick="showProblem(2)">Problema 2</button>
-            <!-- Más botones... -->
-        </div>
+        <!-- Paso 1: Signo del resultado -->
+        <p>Paso 1: Selecciona el signo del resultado:</p>
+        <select id="signSelect">
+            <option value="pos">Positivo (+)</option>
+            <option value="neg">Negativo (-)</option>
+        </select>
+        <p id="feedbackStep1"></p>
 
-        <!-- Sección de problemas -->
-        <div id="problems" class="hidden">
-            <!-- Aquí se mostrarán los problemas dinámicamente -->
-            <div id="problemContainer"></div>
-            <button onclick="goBackToMenu()">Volver al Menú</button>
-        </div>
+        <!-- Paso 2: Variables involucradas -->
+        <p>Paso 2: ¿Qué variables están involucradas?</p>
+        <label><input type="checkbox" id="varX"> \\( x \\)</label>
+        <label><input type="checkbox" id="varY"> \\( y \\)</label>
+        <label><input type="checkbox" id="varZ"> \\( z \\)</label>
+        <p id="feedbackStep2"></p>
 
-        <!-- Vincular el archivo JavaScript principal -->
-        <script src="main.js"></script>
+        <!-- Paso 3: Multiplicar los coeficientes -->
+        <p>Paso 3: Multiplica los coeficientes numéricos (4 y -5):</p>
+        <input type="text" id="coefInput" placeholder="Ingresa el resultado">
+        <button onclick="checkStep3()">Comprobar</button>
+        <p id="feedbackStep3"></p>
+
+        <!-- Paso 4: Multiplicar las variables -->
+        <p>Paso 4: Multiplica las variables \\(x^2 \\cdot x^3\\):</p>
+        <input type="text" id="expInput" placeholder="Ingresa el exponente de \\(x\\)">
+        <button onclick="checkStep4()">Comprobar</button>
+        <p id="feedbackStep4"></p>
+
+        <!-- Resultado final en LaTeX -->
+        <h2>Resultado:</h2>
+        <p id="finalResult"></p>
     </div>
+
+    <!-- Script principal -->
+    <script src="exercise11.js"></script>
 </body>
 </html>
