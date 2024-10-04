@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Juego de Matemáticas: Multiplicación y División de Monomios</title>
+    <!-- Importar MathJax -->
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -50,15 +52,16 @@
         <!-- Sección de multiplicación -->
         <div id="multiplicationStep1">
             <h2>Ejercicio de Multiplicación</h2>
-            <p>Multiplica los siguientes monomios: \(3x^2 \cdot 4x^3\)</p>
-            <p>Paso 1: ¿Cuál es el coeficiente resultante? (3 * 4)</p>
+            <p>Multiplica los siguientes monomios: 
+            \( 3x^2 \cdot 4x^3 \)</p>
+            <p>Paso 1: ¿Cuál es el coeficiente resultante? \( 3 \times 4 \)</p>
             <input type="number" id="inputMultiplication1" placeholder="Ingresa tu respuesta">
             <button onclick="checkMultiplicationStep1()">Comprobar</button>
             <p id="feedbackMultiplication1"></p>
         </div>
 
         <div id="multiplicationStep2" class="hidden">
-            <p>Paso 2: ¿Cuál es el exponente de \(x\) resultante? (suma de 2 y 3)</p>
+            <p>Paso 2: ¿Cuál es el exponente de \( x \) resultante? (Suma de \( 2 + 3 \))</p>
             <input type="number" id="inputMultiplication2" placeholder="Ingresa tu respuesta">
             <button onclick="checkMultiplicationStep2()">Comprobar</button>
             <p id="feedbackMultiplication2"></p>
@@ -66,21 +69,24 @@
 
         <div id="finalMultiplicationStep" class="hidden">
             <h3>¡Has completado la multiplicación!</h3>
-            <p>El resultado es \(12x^5\)</p>
+            <p>El resultado es \( 12x^5 \)</p>
         </div>
 
         <!-- Sección de división -->
         <div id="divisionStep1" class="hidden">
             <h2>Ejercicio de División</h2>
-            <p>Divide los siguientes monomios: \(\frac{12x^5}{4x^2}\)</p>
-            <p>Paso 1: ¿Cuál es el coeficiente resultante? (12 ÷ 4)</p>
+            <p>Divide los siguientes monomios: 
+            \[
+                \frac{12x^5}{4x^2}
+            \]</p>
+            <p>Paso 1: ¿Cuál es el coeficiente resultante? \( \frac{12}{4} \)</p>
             <input type="number" id="inputDivision1" placeholder="Ingresa tu respuesta">
             <button onclick="checkDivisionStep1()">Comprobar</button>
             <p id="feedbackDivision1"></p>
         </div>
 
         <div id="divisionStep2" class="hidden">
-            <p>Paso 2: ¿Cuál es el exponente de \(x\) resultante? (resta de 5 y 2)</p>
+            <p>Paso 2: ¿Cuál es el exponente de \( x \) resultante? (Resta de \( 5 - 2 \))</p>
             <input type="number" id="inputDivision2" placeholder="Ingresa tu respuesta">
             <button onclick="checkDivisionStep2()">Comprobar</button>
             <p id="feedbackDivision2"></p>
@@ -88,13 +94,16 @@
 
         <div id="finalDivisionStep" class="hidden">
             <h3>¡Has completado la división!</h3>
-            <p>El resultado es \(3x^3\)</p>
+            <p>El resultado es \( 3x^3 \)</p>
         </div>
 
         <!-- Evaluación final -->
         <div id="finalTest" class="hidden">
             <h2>Prueba final</h2>
-            <p>Ahora resuelve: \(\frac{-24x^3y^2}{8xy}\)</p>
+            <p>Ahora resuelve: 
+            \[
+                \frac{-24x^3y^2}{8xy}
+            \]</p>
             <p>Paso 1: ¿Cuál es el coeficiente resultante?</p>
             <input type="number" id="inputFinal1" placeholder="Ingresa tu respuesta">
             <button onclick="checkFinalTest()">Comprobar</button>
@@ -110,6 +119,7 @@
             if (input == 12) {
                 feedback.innerHTML = "¡Correcto! Ahora suma los exponentes.";
                 document.getElementById("multiplicationStep2").classList.remove("hidden");
+                MathJax.typeset(); // Re-renderizar LaTeX
             } else {
                 feedback.innerHTML = "Incorrecto. Recuerda multiplicar 3 por 4.";
             }
@@ -120,9 +130,10 @@
             var input = document.getElementById("inputMultiplication2").value;
             var feedback = document.getElementById("feedbackMultiplication2");
             if (input == 5) {
-                feedback.innerHTML = "¡Bien hecho! El resultado es 12x^5.";
+                feedback.innerHTML = "¡Bien hecho! El resultado es \(12x^5\).";
                 document.getElementById("finalMultiplicationStep").classList.remove("hidden");
                 document.getElementById("divisionStep1").classList.remove("hidden"); // Desbloquear sección de división
+                MathJax.typeset(); // Re-renderizar LaTeX
             } else {
                 feedback.innerHTML = "Incorrecto. Debes sumar los exponentes de 2 y 3.";
             }
@@ -135,6 +146,7 @@
             if (input == 3) {
                 feedback.innerHTML = "¡Correcto! Ahora resta los exponentes.";
                 document.getElementById("divisionStep2").classList.remove("hidden");
+                MathJax.typeset(); // Re-renderizar LaTeX
             } else {
                 feedback.innerHTML = "Incorrecto. Recuerda dividir 12 entre 4.";
             }
@@ -145,9 +157,10 @@
             var input = document.getElementById("inputDivision2").value;
             var feedback = document.getElementById("feedbackDivision2");
             if (input == 3) {
-                feedback.innerHTML = "¡Excelente! El resultado es 3x^3.";
+                feedback.innerHTML = "¡Excelente! El resultado es \(3x^3\).";
                 document.getElementById("finalDivisionStep").classList.remove("hidden");
                 document.getElementById("finalTest").classList.remove("hidden"); // Desbloquear prueba final
+                MathJax.typeset(); // Re-renderizar LaTeX
             } else {
                 feedback.innerHTML = "Incorrecto. Recuerda restar 5 menos 2.";
             }
@@ -159,6 +172,7 @@
             var feedback = document.getElementById("feedbackFinal");
             if (input == -3) {
                 feedback.innerHTML = "¡Muy bien! El coeficiente es -3. Has completado el ejercicio.";
+                MathJax.typeset(); // Re-renderizar LaTeX
             } else {
                 feedback.innerHTML = "Incorrecto. Intenta dividir -24 entre 8.";
             }
