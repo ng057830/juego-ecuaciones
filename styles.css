@@ -32,3 +32,9 @@ button:hover {
 .hidden {
     display: none;
 }
+
+input {
+    margin: 10px;
+    padding: 5px;
+    font-size: 18px;
+}
