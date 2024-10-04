@@ -8,8 +8,8 @@
     <!-- Estilos -->
     <link rel="stylesheet" href="styles.css">
     
-    <!-- MathJax para LaTeX -->
-    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <!-- MathJax desde GitHub -->
+    <script src="mathjax.js"></script>
 </head>
 <body>
     <div class="container">
@@ -17,7 +17,7 @@
         <p>Multiplica los monomios: \\( 4x^2 \cdot (-5x^3) \\)</p>
 
         <!-- Paso 1: Identificar el signo -->
-        <p>Paso 1: Identifica el signo del resultado:</p>
+        <p>Paso 1: Selecciona el signo del resultado:</p>
         <select id="signSelect">
             <option value="pos">Positivo (+)</option>
             <option value="neg">Negativo (-)</option>
@@ -32,7 +32,7 @@
 
         <!-- Paso 3: Multiplicar los coeficientes numéricos -->
         <p>Paso 3: Multiplica los coeficientes numéricos \\( 4 \\) y \\( -5 \\):</p>
-        <input type="text" id="coefInput" placeholder="Ingresa el resultado numérico">
+        <input type="text" id="coefInput" placeholder="Escribe aquí">
         <button onclick="checkStep3()">Comprobar</button>
         <p id="feedbackStep3"></p>
 
@@ -45,7 +45,7 @@
 
         <!-- Paso 5: Sumar los exponentes -->
         <p>Paso 5: Suma los exponentes de \\( x \\):</p>
-        <input type="text" id="sumExpInput" placeholder="Ingresa la suma de los exponentes">
+        <input type="text" id="sumExpInput" placeholder="Escribe aquí">
         <button onclick="checkStep5()">Comprobar</button>
         <p id="feedbackStep5"></p>
 
