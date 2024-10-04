@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Juego de Matemáticas: Resuelve la ecuación</title>
+    <title>Juego de Matemáticas: Multiplicación y División de Monomios</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -12,7 +12,7 @@
             padding: 0;
         }
         .container {
-            max-width: 600px;
+            max-width: 700px;
             margin: 50px auto;
             padding: 20px;
             border: 1px solid #ccc;
@@ -44,50 +44,123 @@
 </head>
 <body>
     <div class="container">
-        <h1>Juego: Resuelve la ecuación paso a paso</h1>
-        <p>Vamos a resolver la ecuación <strong>2x + 1 = 3</strong></p>
-        
-        <div id="step1">
-            <p>Paso 1: ¿Qué debes restar a ambos lados de la ecuación?</p>
-            <input type="number" id="inputStep1" placeholder="Ingresa tu respuesta">
-            <button onclick="checkStep1()">Comprobar</button>
-            <p id="feedbackStep1"></p>
+        <h1>Multiplicación y División de Monomios</h1>
+        <p>Sigue los pasos para resolver cada ejercicio paso a paso</p>
+
+        <!-- Sección de multiplicación -->
+        <div id="multiplicationStep1">
+            <h2>Ejercicio de Multiplicación</h2>
+            <p>Multiplica los siguientes monomios: \(3x^2 \cdot 4x^3\)</p>
+            <p>Paso 1: ¿Cuál es el coeficiente resultante? (3 * 4)</p>
+            <input type="number" id="inputMultiplication1" placeholder="Ingresa tu respuesta">
+            <button onclick="checkMultiplicationStep1()">Comprobar</button>
+            <p id="feedbackMultiplication1"></p>
         </div>
-        
-        <div id="step2" class="hidden">
-            <p>Paso 2: ¿Qué debes hacer para despejar la x?</p>
-            <input type="number" id="inputStep2" placeholder="Ingresa tu respuesta">
-            <button onclick="checkStep2()">Comprobar</button>
-            <p id="feedbackStep2"></p>
+
+        <div id="multiplicationStep2" class="hidden">
+            <p>Paso 2: ¿Cuál es el exponente de \(x\) resultante? (suma de 2 y 3)</p>
+            <input type="number" id="inputMultiplication2" placeholder="Ingresa tu respuesta">
+            <button onclick="checkMultiplicationStep2()">Comprobar</button>
+            <p id="feedbackMultiplication2"></p>
         </div>
-        
-        <div id="finalStep" class="hidden">
-            <p>¡Felicidades! Has resuelto la ecuación.</p>
-            <p>La solución es x = <span id="solution"></span></p>
+
+        <div id="finalMultiplicationStep" class="hidden">
+            <h3>¡Has completado la multiplicación!</h3>
+            <p>El resultado es \(12x^5\)</p>
+        </div>
+
+        <!-- Sección de división -->
+        <div id="divisionStep1" class="hidden">
+            <h2>Ejercicio de División</h2>
+            <p>Divide los siguientes monomios: \(\frac{12x^5}{4x^2}\)</p>
+            <p>Paso 1: ¿Cuál es el coeficiente resultante? (12 ÷ 4)</p>
+            <input type="number" id="inputDivision1" placeholder="Ingresa tu respuesta">
+            <button onclick="checkDivisionStep1()">Comprobar</button>
+            <p id="feedbackDivision1"></p>
+        </div>
+
+        <div id="divisionStep2" class="hidden">
+            <p>Paso 2: ¿Cuál es el exponente de \(x\) resultante? (resta de 5 y 2)</p>
+            <input type="number" id="inputDivision2" placeholder="Ingresa tu respuesta">
+            <button onclick="checkDivisionStep2()">Comprobar</button>
+            <p id="feedbackDivision2"></p>
+        </div>
+
+        <div id="finalDivisionStep" class="hidden">
+            <h3>¡Has completado la división!</h3>
+            <p>El resultado es \(3x^3\)</p>
+        </div>
+
+        <!-- Evaluación final -->
+        <div id="finalTest" class="hidden">
+            <h2>Prueba final</h2>
+            <p>Ahora resuelve: \(\frac{-24x^3y^2}{8xy}\)</p>
+            <p>Paso 1: ¿Cuál es el coeficiente resultante?</p>
+            <input type="number" id="inputFinal1" placeholder="Ingresa tu respuesta">
+            <button onclick="checkFinalTest()">Comprobar</button>
+            <p id="feedbackFinal"></p>
         </div>
     </div>
 
     <script>
-        function checkStep1() {
-            var input = document.getElementById("inputStep1").value;
-            var feedback = document.getElementById("feedbackStep1");
-            if (input == 1) {
-                feedback.innerHTML = "¡Correcto! Restamos 1 a ambos lados: 2x = 2";
-                document.getElementById("step2").classList.remove("hidden");
+        // Multiplicación - Paso 1
+        function checkMultiplicationStep1() {
+            var input = document.getElementById("inputMultiplication1").value;
+            var feedback = document.getElementById("feedbackMultiplication1");
+            if (input == 12) {
+                feedback.innerHTML = "¡Correcto! Ahora suma los exponentes.";
+                document.getElementById("multiplicationStep2").classList.remove("hidden");
             } else {
-                feedback.innerHTML = "Incorrecto. Recuerda que debes restar 1.";
+                feedback.innerHTML = "Incorrecto. Recuerda multiplicar 3 por 4.";
             }
         }
 
-        function checkStep2() {
-            var input = document.getElementById("inputStep2").value;
-            var feedback = document.getElementById("feedbackStep2");
-            if (input == 2) {
-                feedback.innerHTML = "¡Bien hecho! Dividimos ambos lados por 2 y obtenemos x = 1.";
-                document.getElementById("solution").innerHTML = "1";
-                document.getElementById("finalStep").classList.remove("hidden");
+        // Multiplicación - Paso 2
+        function checkMultiplicationStep2() {
+            var input = document.getElementById("inputMultiplication2").value;
+            var feedback = document.getElementById("feedbackMultiplication2");
+            if (input == 5) {
+                feedback.innerHTML = "¡Bien hecho! El resultado es 12x^5.";
+                document.getElementById("finalMultiplicationStep").classList.remove("hidden");
+                document.getElementById("divisionStep1").classList.remove("hidden"); // Desbloquear sección de división
             } else {
-                feedback.innerHTML = "Incorrecto. Necesitas dividir por 2.";
+                feedback.innerHTML = "Incorrecto. Debes sumar los exponentes de 2 y 3.";
+            }
+        }
+
+        // División - Paso 1
+        function checkDivisionStep1() {
+            var input = document.getElementById("inputDivision1").value;
+            var feedback = document.getElementById("feedbackDivision1");
+            if (input == 3) {
+                feedback.innerHTML = "¡Correcto! Ahora resta los exponentes.";
+                document.getElementById("divisionStep2").classList.remove("hidden");
+            } else {
+                feedback.innerHTML = "Incorrecto. Recuerda dividir 12 entre 4.";
+            }
+        }
+
+        // División - Paso 2
+        function checkDivisionStep2() {
+            var input = document.getElementById("inputDivision2").value;
+            var feedback = document.getElementById("feedbackDivision2");
+            if (input == 3) {
+                feedback.innerHTML = "¡Excelente! El resultado es 3x^3.";
+                document.getElementById("finalDivisionStep").classList.remove("hidden");
+                document.getElementById("finalTest").classList.remove("hidden"); // Desbloquear prueba final
+            } else {
+                feedback.innerHTML = "Incorrecto. Recuerda restar 5 menos 2.";
+            }
+        }
+
+        // Prueba final
+        function checkFinalTest() {
+            var input = document.getElementById("inputFinal1").value;
+            var feedback = document.getElementById("feedbackFinal");
+            if (input == -3) {
+                feedback.innerHTML = "¡Muy bien! El coeficiente es -3. Has completado el ejercicio.";
+            } else {
+                feedback.innerHTML = "Incorrecto. Intenta dividir -24 entre 8.";
             }
         }
     </script>
