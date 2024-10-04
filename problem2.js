@@ -1,18 +1,17 @@
-// Función para limpiar y formatear la entrada del usuario eliminando espacios innecesarios
+// Función para limpiar y normalizar la entrada del usuario eliminando espacios y ajustando el formato
 function cleanInput(input) {
-    // Eliminar todos los espacios en blanco de la entrada del usuario
-    return input.replace(/\s+/g, '');
+    return input.replace(/\s+/g, '').replace(/\*\*/g, '^');
 }
 
 // Función para comparar expresiones simbólicamente con Algebrite
 function compareExpressions(input, correctExpression) {
     try {
-        // Simplificar ambas expresiones con Algebrite
+        // Normalizamos las expresiones antes de compararlas
         var simplifiedInput = Algebrite.run(`simplify(${input})`).toString();
         var simplifiedCorrect = Algebrite.run(`simplify(${correctExpression})`).toString();
 
-        // Comparar las expresiones simplificadas
-        return simplifiedInput === simplifiedCorrect;
+        // Convertir ambas expresiones a su forma canónica para comparación
+        return Algebrite.run(`canonical(${simplifiedInput})`).toString() === Algebrite.run(`canonical(${simplifiedCorrect})`).toString();
     } catch (error) {
         return false;  // Si hay algún error en la evaluación, devolver falso
     }
