@@ -1,8 +1,5 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f9f9f9;
-    margin: 0;
-    padding: 20px;
+.hidden {
+    display: none;
 }
 
 .container {
@@ -12,7 +9,6 @@ body {
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    text-align: center;
 }
 
 h1 {
@@ -33,7 +29,9 @@ button:hover {
     background-color: #45a049;
 }
 
-/* Clase para ocultar un contenedor */
-.hidden {
-    display: none;
+input[type="text"] {
+    padding: 10px;
+    font-size: 18px;
+    margin: 10px 0;
+    width: 200px;
 }
