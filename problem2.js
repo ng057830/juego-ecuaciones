@@ -1,3 +1,9 @@
+// Función para limpiar y formatear la entrada del usuario eliminando espacios innecesarios
+function cleanInput(input) {
+    // Eliminar todos los espacios en blanco de la entrada del usuario
+    return input.replace(/\s+/g, '');
+}
+
 // Contenido del Problema 2 - Multiplicación de Binomios
 function getProblemContent() {
     return `
@@ -28,11 +34,11 @@ function getProblemContent() {
 
 // Lógica de validación del Paso 1 (Distribuir 2x)
 function checkProblem2Step1() {
-    var input = document.getElementById("inputProblem2Step1").value;
+    var input = cleanInput(document.getElementById("inputProblem2Step1").value);
     var feedback = document.getElementById("feedbackProblem2Step1");
     
-    // Usamos math.equal() para validar la expresión
     try {
+        // Validar la expresión limpiada usando math.simplify() de math.js
         if (math.equal(math.simplify(input), math.simplify("2x^2 - 8x"))) {
             feedback.innerHTML = "¡Correcto! Has distribuido bien el término \\(2x\\).";
             document.getElementById("problem2Step2").classList.remove("hidden");
@@ -50,10 +56,11 @@ function checkProblem2Step1() {
 
 // Lógica de validación del Paso 2 (Distribuir 3)
 function checkProblem2Step2() {
-    var input = document.getElementById("inputProblem2Step2").value;
+    var input = cleanInput(document.getElementById("inputProblem2Step2").value);
     var feedback = document.getElementById("feedbackProblem2Step2");
 
     try {
+        // Validar la expresión limpiada usando math.simplify()
         if (math.equal(math.simplify(input), math.simplify("3x - 12"))) {
             feedback.innerHTML = "¡Bien hecho! Ahora tienes los términos resultantes de la distribución.";
             document.getElementById("problem2Step3").classList.remove("hidden");
@@ -70,10 +77,11 @@ function checkProblem2Step2() {
 
 // Lógica de validación del Paso 3 (Combinar términos semejantes)
 function checkProblem2Step3() {
-    var input = document.getElementById("inputProblem2Step3").value;
+    var input = cleanInput(document.getElementById("inputProblem2Step3").value);
     var feedback = document.getElementById("feedbackProblem2Step3");
 
     try {
+        // Validar la expresión limpiada usando math.simplify()
         if (math.equal(math.simplify(input), math.simplify("2x^2 - 5x - 12"))) {
             feedback.innerHTML = "¡Excelente trabajo! El resultado final es \\(2x^2 - 5x - 12\\).";
             MathJax.typeset(); // Re-renderizar LaTeX
