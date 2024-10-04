@@ -35,19 +35,4 @@ button {
     background-color: #4CAF50;
     color: white;
     border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #45a049;
-}
-
-select, input[type="checkbox"] {
-    margin-right: 10px;
-}
-
-#finalResult {
-    font-size: 24px;
-    margin-top: 20px;
-}
+    border-radius
